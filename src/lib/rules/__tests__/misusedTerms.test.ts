@@ -46,4 +46,18 @@ describe("misusedTerms", () => {
     const matches = misusedTerms.detect(text);
     expect(matches.length).toBeGreaterThan(0);
   });
+
+  it("counts each unique term only once even if repeated", () => {
+    const text =
+      "Our quantum engine uses quantum processing. Quantum is at the core of our quantum platform.";
+    const matches = misusedTerms.detect(text);
+    expect(matches).toHaveLength(1);
+  });
+
+  it("counts distinct terms separately", () => {
+    const text = "We use quantum entropy and quantum manifold analysis.";
+    const matches = misusedTerms.detect(text);
+    // quantum + entropy + manifold = 3 unique terms (quantum counted once)
+    expect(matches).toHaveLength(3);
+  });
 });

@@ -147,16 +147,20 @@ export const misusedTerms: Rule = {
   mode: "per-match",
   detect(text: string): Match[] {
     const matches: Match[] = [];
-    const seen = new Set<number>(); // track start positions to avoid overlaps
+    const seenPositions = new Set<number>(); // track start positions to avoid overlaps
+    const seenTerms = new Set<string>(); // each unique term counted only once
 
     for (const term of ALL_TERMS) {
       const pattern = buildPattern(term);
       let m: RegExpExecArray | null;
       while ((m = pattern.exec(text)) !== null) {
-        if (seen.has(m.index)) continue;
+        if (seenPositions.has(m.index)) continue;
         if (isLikelyTechnical(text, m.index)) continue;
 
-        seen.add(m.index);
+        const normalized = m[0].toLowerCase();
+        if (seenTerms.has(normalized)) continue;
+        seenTerms.add(normalized);
+        seenPositions.add(m.index);
 
         const start = Math.max(0, m.index - 40);
         const end = Math.min(text.length, m.index + m[0].length + 40);
