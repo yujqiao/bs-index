@@ -76,8 +76,8 @@ export function MethodologyModal() {
             <div className="space-y-1">
               <h3 className="text-sm font-semibold">Base Score: 5</h3>
               <p className="text-xs text-muted-foreground">
-                No benefit of the doubt here. The total begins
-                at 5 and rules add points from there.
+                Benefit of the doubt. The total begins at 5 and
+                rules add points from there.
               </p>
             </div>
 

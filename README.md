@@ -8,7 +8,7 @@ All scoring is regex-based pattern matching — no LLM, no server. Everything ru
 
 ## Scoring Rubric
 
-Your text starts at **5 points** (no benefit of the doubt), then:
+Your text starts at **5 points** (benefit of the doubt), then:
 
 | Rule | Points | Mode |
 |------|--------|------|
