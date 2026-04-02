@@ -66,6 +66,13 @@ describe("motteAndBailey", () => {
     expect(matches.length).toBeGreaterThan(0);
   });
 
+  it('detects "is not X but Y" without qualifiers', () => {
+    const text =
+      "Infrastructure is not an afterthought but a strategic capability.";
+    const matches = motteAndBailey.detect(text);
+    expect(matches.length).toBeGreaterThan(0);
+  });
+
   it('detects "move beyond X"', () => {
     const text =
       "Our platform enables customers to move beyond simple dashboards.";

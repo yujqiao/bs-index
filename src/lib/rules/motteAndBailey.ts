@@ -50,6 +50,11 @@ const PATTERNS: Array<{ regex: RegExp; label: string }> = [
     regex: /not\s+(?:just|merely|simply|only)\s+(.{2,60}?)[,;—–-]\s*but\s+(.{2,80}?)\./gi,
     label: '"Not just X, but Y."',
   },
+  // "is not X but Y" — without qualifiers (e.g. "is not an afterthought but a strategic capability")
+  {
+    regex: /\b(?:is|was|are|were)\s+not\s+(?:an?\s+)?(.{2,60}?)\s+but\s+(?:an?\s+)?(.{2,60}?)\./gi,
+    label: '"is not X but Y."',
+  },
   // "More than X. It's Y."
   {
     regex:
