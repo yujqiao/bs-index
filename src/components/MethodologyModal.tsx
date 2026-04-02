@@ -7,7 +7,6 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Button } from "@/components/ui/button";
 import { Info } from "lucide-react";
 
 function Section({
@@ -57,11 +56,11 @@ function PatternList({ items }: { items: string[] }) {
 export function MethodologyModal() {
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline" size="sm" className="gap-1.5 cursor-pointer">
-          <Info className="h-3.5 w-3.5" />
-          Methodology
-        </Button>
+      <DialogTrigger
+        className="inline-flex items-center justify-center gap-1.5 rounded-md border border-input bg-background px-3 py-1.5 text-sm font-medium shadow-xs hover:bg-accent hover:text-accent-foreground cursor-pointer"
+      >
+        <Info className="h-3.5 w-3.5" />
+        Methodology
       </DialogTrigger>
       <DialogContent className="sm:max-w-2xl max-h-[85vh] p-0 overflow-hidden [&>*]:min-w-0">
         <DialogHeader className="px-4 sm:px-6 pt-6 pb-2">
