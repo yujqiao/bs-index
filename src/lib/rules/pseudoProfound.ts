@@ -26,6 +26,20 @@ const BUZZWORD_PATTERNS = [
   /\b(?:a|the)\s+new\s+(?:era|dawn|chapter|age|paradigm|frontier)\s+(?:of|in|for|has)\b/i,
   /\bnothing\s+(?:will\s+(?:ever\s+)?be|is)\s+the\s+same\b/i,
   /\bthe\s+question\s+is\s+not\s+(?:whether|if)\b.*\bbut\s+(?:when|how\s+fast)\b/i,
+  // "at the forefront of X" — grandiose positioning
+  /\bat\s+the\s+(?:forefront|cutting\s+edge|vanguard|frontier)\s+of\b/i,
+  // "for the long term" / "build(s) for the future"
+  /\b(?:build|builds|built|shape|shapes|shaped|position|positions|positioned)\s+(?:\w+\s+)?for\s+the\s+(?:long\s+term|future|next\s+(?:decade|generation|chapter))\b/i,
+  // "problems/solutions we have yet to discover/invent/define"
+  /\b(?:problems|solutions|challenges|opportunities)\s+(?:we|they|that)\s+(?:have\s+)?(?:yet|still)\s+to\s+(?:discover|invent|define|imagine|solve|encounter|face)\b/i,
+  // "still being defined/discovered/invented" — vague futurism
+  /\b(?:problems|solutions|challenges|questions)\s+that\s+are\s+(?:still|yet)\s+(?:being\s+)?(?:defined|discovered|invented|written|shaped|imagined)\b/i,
+  // "the ultimate X that will …" — superlative future promise
+  /\bthe\s+ultimate\s+\w+\s+that\s+will\b/i,
+  // "in the business of predicting/shaping/defining the future"
+  /\bin\s+the\s+business\s+of\s+(?:predicting|shaping|defining|building|creating)\s+the\s+future\b/i,
+  // "continues that trajectory" / "continues to shape" — vague momentum language at end
+  /\bcontinues\s+(?:that\s+)?(?:trajectory|momentum|legacy|path|journey)\b/i,
 ];
 
 function splitParagraphs(text: string): Array<{ content: string; start: number }> {

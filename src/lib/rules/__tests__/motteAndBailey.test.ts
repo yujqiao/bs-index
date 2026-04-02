@@ -44,4 +44,32 @@ describe("motteAndBailey", () => {
     const matches = motteAndBailey.detect(text);
     expect(matches.length).toBeGreaterThan(0);
   });
+
+  it('detects comma-separated "is not X, it is Y"', () => {
+    const text =
+      'Infrastructure is not an afterthought, it is a strategic capability.';
+    const matches = motteAndBailey.detect(text);
+    expect(matches.length).toBeGreaterThan(0);
+  });
+
+  it('detects "is not X. It is Y." with implicit subject', () => {
+    const text =
+      "The ability to scale is not optional. It is foundational to performance.";
+    const matches = motteAndBailey.detect(text);
+    expect(matches.length).toBeGreaterThan(0);
+  });
+
+  it('detects "X rather than Y"', () => {
+    const text =
+      "We design our platform as an enduring system rather than as a series of upgrades.";
+    const matches = motteAndBailey.detect(text);
+    expect(matches.length).toBeGreaterThan(0);
+  });
+
+  it('detects "move beyond X"', () => {
+    const text =
+      "Our platform enables customers to move beyond simple dashboards.";
+    const matches = motteAndBailey.detect(text);
+    expect(matches.length).toBeGreaterThan(0);
+  });
 });

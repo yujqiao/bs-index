@@ -50,4 +50,46 @@ describe("pseudoProfound", () => {
     const matches = pseudoProfound.detect(text);
     expect(matches.length).toBeGreaterThan(0);
   });
+
+  it("detects 'at the forefront of'", () => {
+    const text =
+      "Some intro.\n\nThe company remains at the forefront of AI-driven innovation.";
+    const matches = pseudoProfound.detect(text);
+    expect(matches.length).toBeGreaterThan(0);
+  });
+
+  it("detects 'builds for the long term'", () => {
+    const text =
+      "Some intro.\n\nThis approach shapes how the company builds for the long term.";
+    const matches = pseudoProfound.detect(text);
+    expect(matches.length).toBeGreaterThan(0);
+  });
+
+  it("detects 'problems we have yet to discover'", () => {
+    const text =
+      "Some intro.\n\nWe will tackle the problems we have yet to discover with the solutions we plan to invent.";
+    const matches = pseudoProfound.detect(text);
+    expect(matches.length).toBeGreaterThan(0);
+  });
+
+  it("detects 'problems that are still being defined'", () => {
+    const text =
+      "Some intro.\n\nOur platform is designed for problems that are still being defined.";
+    const matches = pseudoProfound.detect(text);
+    expect(matches.length).toBeGreaterThan(0);
+  });
+
+  it("detects 'the ultimate X that will'", () => {
+    const text =
+      "Some intro.\n\nThis is the ultimate investment that will give us the power to innovate.";
+    const matches = pseudoProfound.detect(text);
+    expect(matches.length).toBeGreaterThan(0);
+  });
+
+  it("detects 'continues that trajectory'", () => {
+    const text =
+      "Some intro.\n\nThe expansion continues that trajectory across global markets.";
+    const matches = pseudoProfound.detect(text);
+    expect(matches.length).toBeGreaterThan(0);
+  });
 });
