@@ -5,6 +5,7 @@ import { TextInput } from "@/components/TextInput";
 import { ScoreBoard } from "@/components/ScoreBoard";
 import { RubricBreakdown } from "@/components/RubricBreakdown";
 import { score } from "@/lib/scorer";
+import { MethodologyModal } from "@/components/MethodologyModal";
 
 function App() {
   const [text, setText] = useState("");
@@ -40,6 +41,9 @@ function App() {
             </a>
             . Paste marketing text below to score it automatically.
           </p>
+          <div className="mt-3">
+            <MethodologyModal />
+          </div>
         </header>
 
         {/* Main content */}
