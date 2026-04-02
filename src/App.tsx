@@ -1,121 +1,96 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useMemo, useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { TextInput } from "@/components/TextInput";
+import { ScoreBoard } from "@/components/ScoreBoard";
+import { RubricBreakdown } from "@/components/RubricBreakdown";
+import { score } from "@/lib/scorer";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [text, setText] = useState("");
+
+  const result = useMemo(() => score(text), [text]);
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
+    <div className="min-h-screen bg-background">
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        {/* Header */}
+        <header className="text-center mb-8">
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
+            The AI Marketing BS Index
+          </h1>
+          <p className="text-muted-foreground mt-2 max-w-2xl mx-auto text-sm leading-relaxed">
+            Inspired by{" "}
+            <a
+              href="https://bastian.rieck.me/blog/2026/bs/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4 hover:text-foreground transition-colors"
+            >
+              Bastian Rieck's BS Index
+            </a>{" "}
+            and{" "}
+            <a
+              href="https://math.ucr.edu/home/baez/crackpot.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4 hover:text-foreground transition-colors"
+            >
+              John Baez's Crackpot Index
+            </a>
+            . Paste marketing text below to score it automatically.
           </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+        </header>
 
-      <div className="ticks"></div>
+        {/* Main content */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Left: Input */}
+          <div>
+            <Card>
+              <CardContent className="pt-6">
+                <TextInput value={text} onChange={setText} />
+              </CardContent>
+            </Card>
+          </div>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+          {/* Right: Results */}
+          <div className="space-y-4">
+            <Card>
+              <CardContent className="pt-2">
+                <ScoreBoard total={result.total} />
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="pt-4 pb-2">
+                <RubricBreakdown ruleResults={result.ruleResults} />
+              </CardContent>
+            </Card>
+          </div>
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+        <Separator className="my-8" />
+
+        {/* Footer */}
+        <footer className="text-center text-xs text-muted-foreground pb-6 space-y-1">
+          <p>
+            Original rubric by{" "}
+            <a
+              href="https://bastian.rieck.me/blog/2026/bs/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4 hover:text-foreground transition-colors"
+            >
+              Bastian Rieck
+            </a>
+            . Scoring is heuristic-based (regex pattern matching) — not an LLM.
+          </p>
+          <p>
+            All processing happens in your browser. No data is sent anywhere.
+          </p>
+        </footer>
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;

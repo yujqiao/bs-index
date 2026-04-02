@@ -1,0 +1,10 @@
+export { noCitation } from "./noCitation";
+export { misusedTerms } from "./misusedTerms";
+export { motteAndBailey } from "./motteAndBailey";
+export { pseudoProfound } from "./pseudoProfound";
+export { natureUniverse } from "./natureUniverse";
+export { emergentProps } from "./emergentProps";
+export { ivyLeague } from "./ivyLeague";
+export { noFalsifiable } from "./noFalsifiable";
+export { fakeCollab } from "./fakeCollab";
+export type { Rule, Match, RuleResult, ScoreResult } from "./types";
