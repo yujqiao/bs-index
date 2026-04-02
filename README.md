@@ -1,73 +1,52 @@
-# React + TypeScript + Vite
+# The AI Marketing BS Index
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**[👉 Try it live](https://yujqiao.github.io/bs-index/)**
 
-Currently, two official plugins are available:
+Paste AI marketing text and get an instant BS score. Inspired by [Bastian Rieck's AI Marketing BS Index](https://bastian.rieck.me/blog/2026/bs/) and [John Baez's Crackpot Index](https://math.ucr.edu/home/baez/crackpot.html).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+All scoring is regex-based pattern matching — no LLM, no server. Everything runs in your browser.
 
-## React Compiler
+## Scoring Rubric
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Your text starts at **−5 points** (benefit of the doubt), then:
 
-## Expanding the ESLint configuration
+| Rule | Points | Mode |
+|------|--------|------|
+| No citation for invention claims | 10 | once |
+| Misused scientific terms | 10 | per unique term |
+| Motte-and-bailey hedging | 20 | per match |
+| Pseudo-profound paragraph endings | 20 | per match |
+| Nature / universe claims | 20 | per match |
+| Emergent properties (unwarranted) | 20 | per match |
+| Ivy League namedropping | 20 | per match |
+| No falsifiable claims anywhere | 30 | once |
+| Unverifiable collaborations | 40 | per match |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+See the **Methodology** modal on the site for the exact patterns each rule matches.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Verdict Scale
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+| Score | Verdict |
+|-------|---------|
+| ≤ 0 | ✅ Seems Legit |
+| 1–30 | 🤔 Mild BS Detected |
+| 31–70 | ⚠️ Significant BS |
+| 71–120 | 🚨 Major BS Alert |
+| > 120 | 🔥 Weapons-Grade BS |
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Stack
+
+React · TypeScript · Tailwind CSS v4 · shadcn/ui · Vite
+
+## Development
+
+```bash
+pnpm install
+pnpm dev          # start dev server
+pnpm test         # run 72 unit tests
+pnpm build        # production build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## License
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+MIT
