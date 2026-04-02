@@ -47,7 +47,7 @@ export function ScoreBoard({ total }: ScoreBoardProps) {
         </span>
       </div>
       <p className="text-xs text-muted-foreground mt-1">
-        Starting score: 5 (no benefit of the doubt)
+        Starting score: 5 (benefit of the doubt? No.)
       </p>
     </div>
   );
